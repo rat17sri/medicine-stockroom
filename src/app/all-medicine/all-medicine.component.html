@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="row">
+    <div class="input-group mb-3 search">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Search</span
+        >
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        (keyup)="onSearch()"
+        [(ngModel)]="searchText"
+      />
+    </div>
+  </div>
+
+  <div class="row" *ngIf="medicineData.length > 0">
+    <div class="col-sm-6 medCard" *ngFor="let med of filteredMedicineData">
+      <div
+        class="card"
+        [ngClass]="{
+          'card-yellow': med.quantity < 10,
+          'card-red': med.days < 30 }">
+        <div class="card-header">
+          <b>{{ med.name }}</b>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><b>Brand </b>{{ med.brand }}</p>
+          <p class="card-text"><b>Price </b>{{ med.price }}</p>
+          <p class="card-text"><b>Quantity </b>{{ med.quantity }}</p>
+          <p class="card-text"><b>Expiry Date </b>{{ med.expiryDate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="medicineData.length === 0">
+    <h1>No medicines</h1>
+  </div>
+</div>

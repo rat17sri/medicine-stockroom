@@ -1,0 +1,34 @@
+<form [formGroup]="addMedicineForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="formControlInput1">Name of the Medicine</label>
+      <input class="form-control" id="formControlInput1" formControlName="Name" placeholder="Full Name"
+      [ngClass]="{ 'invalid-form': submitted && addMedicineForm.controls.Name.invalid }">
+    </div>
+    <div class="form-group">
+        <label for="formControlInput2">Brand</label>
+        <input class="form-control" id="formControlInput2" formControlName="Brand" placeholder="Brand"
+        [ngClass]="{ 'invalid-form': submitted && addMedicineForm.controls.Brand.invalid }">
+      </div>
+      <div class="form-group">
+        <label for="formControlInput3">Price</label>
+        <input class="form-control" id="formControlInput3" formControlName="Price" type="number" min="0.00" value="0.00" step=".01"
+        [ngClass]="{ 'invalid-form': submitted && addMedicineForm.controls.Brand.invalid }">
+      </div>
+      <div class="form-group">
+        <label for="formControlInput4">Quantity</label>
+        <input class="form-control" id="formControlInput4" formControlName="Quantity" type="number" min="1" value="1">
+      </div>
+      <div class="form-group">
+        <label for="formControlInput5">Expiry Date</label>
+        <input class="form-control" id="formControlInput5" formControlName="ExpiryDate" type="date" [ngModel]="currentDate | date:'yyyy-MM-dd'">
+      </div>
+    <div class="form-group">
+      <label for="formControlInput6">Notes</label>
+      <textarea class="form-control" id="formControlInput6" formControlName="Notes" rows="3"
+      [ngClass]="{ 'invalid-form': submitted && addMedicineForm.controls.Brand.invalid }"></textarea>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="submitted && addMedicineForm.invalid">
+        Please fill all the required fields!
+    </div>
+    <button type="submit" class="btn btn-primary">Add Medicine</button>
+  </form>
